@@ -2,14 +2,14 @@
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "DenyTrustAnchorSessionsOutsideApprovedVpce",
+      "Sid": "DenyRolesAnywhereSessionOutsideVPCeOrgID",
       "Effect": "Deny",
       "Principal": "*",
       "Action": "rolesanywhere:CreateSession",
-      "Resource": "arn:aws:rolesanywhere:${Region}:${Account}:trust-anchor/${Privileged-Trust-Anchor-Id}",
+      "Resource": "*",
       "Condition": {
         "StringNotEqualsIfExists": {
-          "aws:SourceVpce": "vpce-0123456789abcdef0"
+          "aws:VpceOrgID": "${OrganizationId}"
         }
       }
     }

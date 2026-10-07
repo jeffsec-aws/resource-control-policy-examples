@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyRolesAnywhereSessionOutsideApprovedVpcSourceIp",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "rolesanywhere:CreateSession",
+      "Resource": "*",
+      "Condition": {
+        "NotIpAddressIfExists": {
+          "aws:VpcSourceIp": [
+            "10.0.0.0/16",
+            "2001:db8:1234:5678::/64"
+          ]
+        }
+      }
+    }
+  ]
+}

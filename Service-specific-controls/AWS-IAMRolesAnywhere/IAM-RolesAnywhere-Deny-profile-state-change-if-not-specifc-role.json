@@ -8,10 +8,14 @@
       "Action": [
         "rolesanywhere:DisableProfile",
 		    "rolesanywhere:EnableProfile",
-        "rolesanywhere:UpdateProfile"
+        "rolesanywhere:UpdateProfile",
+        "rolesanywhere:DeleteProfile"
       ],
       "Resource": "*",
       "Condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SecurityTier": "Critical"
+        },
         "ArnNotLike": {
           "aws:PrincipalArn": "arn:aws:iam::${Account}:role/[PRIVILEGED_ROLE]"
         }

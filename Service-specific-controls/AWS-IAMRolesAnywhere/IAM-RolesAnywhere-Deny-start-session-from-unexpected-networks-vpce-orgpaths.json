@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyRolesAnywhereSessionOutsideVPCeOrgPaths",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "rolesanywhere:CreateSession",
+      "Resource": "*",
+      "Condition": {
+        "ForAllValues:StringNotLikeIfExists": {
+          "aws:VpceOrgPaths": [
+            "${OrganizationId}/${RootId}/${OrganizationalUnitId}/*"
+          ]
+        }
+      }
+    }
+  ]
+}
